@@ -54,4 +54,27 @@ class code_storage_test extends \advanced_testcase {
         $this->assertTrue($storage->unset_code(2, 3, '123'), 'Code removed');
         $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => '123')));
     }
+
+    public function test_unset_course_codes() {
+        global $DB;
+
+        $storage = new code_storage();
+        $storage->unset_course_codes(2);
+
+        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2)));
+    }
+
+    public function test_unset_user_codes() {
+        global $DB;
+
+        $storage = new code_storage();
+        $storage->unset_user_codes(3);
+
+        $this->assertFalse($DB->record_exists('availability_releasecode', array('userid' => 3)));
+    }
+
+    public function test_get_users_with_any_code() {
+        $storage = new code_storage();
+        $this->assertEquals(array('3' => '3'), $storage->get_users_with_any_code(2));
+    }
 }

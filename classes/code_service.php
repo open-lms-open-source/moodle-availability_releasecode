@@ -99,4 +99,19 @@ class code_service {
             $this->cache->delete((string) $userid);
         }
     }
+
+    /**
+     * Remove all release codes from a course.
+     *
+     * @param $courseid
+     */
+    public function unset_course_codes($courseid) {
+        $userids = $this->storage->get_users_with_any_code($courseid);
+
+        if (empty($userids)) {
+            return;
+        }
+        $this->storage->unset_course_codes($courseid);
+        $this->cache->delete_many($userids);
+    }
 }

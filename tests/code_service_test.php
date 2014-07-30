@@ -69,4 +69,18 @@ class code_service_test extends \advanced_testcase {
         $service->unset_code(2, 3, '123');
         $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => '123')));
     }
+
+    public function test_unset_course_codes() {
+        global $DB;
+
+        $cache   = \cache::make('availability_releasecode', 'releasecodes', array('courseid' => 2));
+        $service = new code_service($cache, new code_storage());
+
+        $this->assertTrue($service->has_code(2, 3, 'ABC')); // Primes the cache.
+
+        $service->unset_course_codes(2);
+        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2)));
+
+        $this->assertFalse($service->has_code(2, 3, 'ABC'));  // Ensures cache is reset.
+    }
 }
