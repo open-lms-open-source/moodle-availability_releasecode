@@ -40,6 +40,15 @@ class code_storage {
     }
 
     /**
+     * Return a case insensitive select for searching for a specific user code in a course.
+     *
+     * @return string
+     */
+    protected function code_select() {
+        return 'courseid = ? AND userid = ? AND '.$this->db->sql_like('code', '?', false);
+    }
+
+    /**
      * Get release codes for a user
      *
      * @param int $courseid
@@ -61,7 +70,9 @@ class code_storage {
      * @return bool
      */
     public function has_code($courseid, $userid, $code) {
-        return $this->db->record_exists('availability_releasecode', $this->data($courseid, $userid, $code));
+        return $this->db->record_exists_select(
+            'availability_releasecode', $this->code_select(), $this->data($courseid, $userid, $code)
+        );
     }
 
     /**
@@ -93,7 +104,7 @@ class code_storage {
         if (!$this->has_code($courseid, $userid, $code)) {
             return false;
         }
-        $this->db->delete_records('availability_releasecode', $this->data($courseid, $userid, $code));
+        $this->db->delete_records_select('availability_releasecode', $this->code_select(), $this->data($courseid, $userid, $code));
 
         return true;
     }

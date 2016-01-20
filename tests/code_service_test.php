@@ -38,6 +38,7 @@ class code_service_test extends \advanced_testcase {
         $cache   = \cache::make('availability_releasecode', 'releasecodes', array('courseid' => 2));
         $service = new code_service($cache, new code_storage());
         $this->assertTrue($service->has_code(2, 3, 'ABC'));
+        $this->assertTrue($service->has_code(2, 3, 'aBc'), 'Release codes should be case insensitive');
         $this->assertTrue($service->has_code(2, 3, '123'));
         $this->assertFalse($service->has_code(2, 3, 'XYZ'), 'Does not have this code');
         $this->assertFalse($service->has_code(2, 3, 'XYZ'), 'Wrong course');

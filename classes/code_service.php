@@ -71,7 +71,13 @@ class code_service {
      * @return bool
      */
     public function has_code($courseid, $userid, $code) {
-        return in_array($code, $this->get_codes($courseid, $userid));
+        foreach ($this->get_codes($courseid, $userid) as $usercode) {
+            if (\core_text::strtolower($usercode) === \core_text::strtolower($code)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**

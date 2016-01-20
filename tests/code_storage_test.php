@@ -22,6 +22,7 @@ class code_storage_test extends \advanced_testcase {
     public function test_has_code() {
         $storage = new code_storage();
         $this->assertTrue($storage->has_code(2, 3, 'ABC'));
+        $this->assertTrue($storage->has_code(2, 3, 'aBc'), 'Release codes should be case insensitive');
         $this->assertTrue($storage->has_code(2, 3, '123'));
         $this->assertFalse($storage->has_code(2, 3, 'XYZ'), 'Does not have this code');
         $this->assertFalse($storage->has_code(2, 3, 'XYZ'), 'Wrong course');
@@ -50,6 +51,9 @@ class code_storage_test extends \advanced_testcase {
 
         $this->assertTrue($storage->unset_code(2, 3, 'ABC'), 'Code removed');
         $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => 'ABC')));
+
+        $this->assertTrue($storage->unset_code(3, 4, 'xYz'), 'Can do a case insensitive code unset');
+        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 3, 'userid' => 4, 'code' => 'XYZ')));
 
         $this->assertTrue($storage->unset_code(2, 3, '123'), 'Code removed');
         $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => '123')));
