@@ -41,7 +41,7 @@ M.availability_releasecode.form.getNode = function(json) {
     // Add event handlers (first time only).
     if (!M.availability_releasecode.form.addedEvents) {
         M.availability_releasecode.form.addedEvents = true;
-        Y.one('#fitem_id_availabilityconditionsjson').delegate('valuechange', function() {
+        Y.one('.availability-field').delegate('valuechange', function() {
             M.core_availability.form.update();
         }, '.availability_releasecode input[name=value]');
     }
