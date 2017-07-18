@@ -32,7 +32,7 @@ class observer_test extends \advanced_testcase {
         $user   = $this->getDataGenerator()->create_user();
         $course = $this->getDataGenerator()->create_course();
 
-        $cache   = \cache::make('availability_releasecode', 'releasecodes', array('courseid' => 2));
+        $cache   = \cache::make('availability_releasecode', 'releasecodes', array('courseid' => $course->id));
         $service = new code_service($cache, new code_storage());
         $service->set_code($course->id, $user->id, 'ABC');
 
