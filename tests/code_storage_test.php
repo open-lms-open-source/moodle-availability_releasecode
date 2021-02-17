@@ -6,7 +6,7 @@ use availability_releasecode\code_storage;
 
 class code_storage_test extends \advanced_testcase {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->resetAfterTest();
 
         $data = include(__DIR__.'/fixtures/codes.php');

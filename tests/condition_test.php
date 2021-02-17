@@ -9,7 +9,7 @@ require_once(__DIR__.'/../../../tests/fixtures/mock_info.php');
 
 class condition_test extends \advanced_testcase {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->resetAfterTest();
 
         $data = include(__DIR__.'/fixtures/codes.php');

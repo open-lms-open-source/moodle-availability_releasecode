@@ -9,11 +9,11 @@ require_once(__DIR__.'/../../../../cache/classes/dummystore.php');
 
 class code_service_test extends \advanced_testcase {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->resetAfterTest();
 
         $data = include(__DIR__.'/fixtures/codes.php');
-        $this->loadDataSet($this->createArrayDataSet($data));
+        $this->dataset_from_array($data)->to_database();
     }
 
     public function test_get_codes() {

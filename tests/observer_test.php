@@ -7,7 +7,7 @@ use availability_releasecode\code_storage;
 
 class observer_test extends \advanced_testcase {
 
-    public function setUp() {
+    public function setUp(): void {
         $this->resetAfterTest();
     }
 
