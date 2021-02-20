@@ -13,7 +13,7 @@ class condition_test extends \advanced_testcase {
         $this->resetAfterTest();
 
         $data = include(__DIR__.'/fixtures/codes.php');
-        $this->loadDataSet($this->createArrayDataSet($data));
+        $this->dataset_from_array($data)->to_database();
     }
 
     public function test_save() {
