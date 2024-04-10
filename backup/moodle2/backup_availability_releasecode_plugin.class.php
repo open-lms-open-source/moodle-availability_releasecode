@@ -19,6 +19,7 @@
  * @author Mark Nielsen
  * @package availability_releasecode
  */
+
 class backup_availability_releasecode_plugin extends backup_plugin {
     /**
      * Returns the backup information to attach to course element
