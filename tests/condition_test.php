@@ -17,8 +17,8 @@ class condition_test extends \advanced_testcase {
     }
 
     public function test_save() {
-        $expected  = (object) array('type' => 'releasecode', 'rc' => '123');
-        $condition = new condition((object) array('rc' => '123'));
+        $expected  = (object) ['type' => 'releasecode', 'rc' => '123'];
+        $condition = new condition((object) ['rc' => '123']);
         $this->assertEquals($expected, $condition->save());
     }
 
@@ -28,7 +28,7 @@ class condition_test extends \advanced_testcase {
         $course->id = 2;
 
         $info = new mock_info($course);
-        $condition = new condition((object) array('rc' => 'ABC'));
+        $condition = new condition((object) ['rc' => 'ABC']);
 
         $this->assertTrue($condition->is_available(false, $info, false, 3));
         $this->assertFalse($condition->is_available(true, $info, false, 3));

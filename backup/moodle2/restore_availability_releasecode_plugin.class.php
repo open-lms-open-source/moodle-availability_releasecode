@@ -11,11 +11,11 @@ class restore_availability_releasecode_plugin extends restore_plugin {
      */
     protected function define_course_plugin_structure() {
         if (!$this->get_setting_value('userscompletion')) {
-            return array();
+            return [];
         }
-        return array(
+        return [
             new restore_path_element('releasecode_code', $this->get_pathfor('/codes/code')),
-        );
+        ];
     }
 
     /**
@@ -29,10 +29,10 @@ class restore_availability_releasecode_plugin extends restore_plugin {
         if (!$newuserid = $this->get_mappingid('user', $data['userid'])) {
             return;
         }
-        $DB->insert_record('availability_releasecode', (object) array(
+        $DB->insert_record('availability_releasecode', (object) [
             'courseid' => $this->task->get_courseid(),
             'userid'   => $newuserid,
             'code'     => $data['code'],
-        ));
+        ]);
     }
 }

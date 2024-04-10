@@ -40,7 +40,7 @@ class code_service {
      */
     public static function factory($courseid) {
         return new self(
-            \cache::make('availability_releasecode', 'releasecodes', array('courseid' => $courseid)),
+            \cache::make('availability_releasecode', 'releasecodes', ['courseid' => $courseid]),
             new code_storage()
         );
     }

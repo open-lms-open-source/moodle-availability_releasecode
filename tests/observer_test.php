@@ -14,7 +14,7 @@ class observer_test extends \advanced_testcase {
     public function test_user_deleted() {
         $user = $this->getDataGenerator()->create_user();
 
-        $cache   = \cache::make('availability_releasecode', 'releasecodes', array('courseid' => 2));
+        $cache   = \cache::make('availability_releasecode', 'releasecodes', ['courseid' => 2]);
         $storage = new code_storage();
         $service = new code_service($cache, $storage);
         $service->set_code(2, $user->id, 'ABC');
@@ -32,7 +32,7 @@ class observer_test extends \advanced_testcase {
         $user   = $this->getDataGenerator()->create_user();
         $course = $this->getDataGenerator()->create_course();
 
-        $cache   = \cache::make('availability_releasecode', 'releasecodes', array('courseid' => $course->id));
+        $cache   = \cache::make('availability_releasecode', 'releasecodes', ['courseid' => $course->id]);
         $service = new code_service($cache, new code_storage());
         $service->set_code($course->id, $user->id, 'ABC');
 

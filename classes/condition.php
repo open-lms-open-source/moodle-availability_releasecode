@@ -38,7 +38,7 @@ class condition extends base_condition {
     }
 
     public function save() {
-        return (object) array('type' => 'releasecode', 'rc' => $this->releasecode);
+        return (object) ['type' => 'releasecode', 'rc' => $this->releasecode];
     }
 
     public function is_available($not, info $info, $grabthelot, $userid) {
