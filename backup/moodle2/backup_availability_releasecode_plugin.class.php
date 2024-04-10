@@ -19,12 +19,12 @@ class backup_availability_releasecode_plugin extends backup_plugin {
         $plugin->add_child($pluginwrapper);
 
         $codes = new backup_nested_element('codes');
-        $code  = new backup_nested_element('code', array('id'), array('userid', 'code'));
+        $code  = new backup_nested_element('code', ['id'], ['userid', 'code']);
 
         $pluginwrapper->add_child($codes);
         $codes->add_child($code);
 
-        $code->set_source_table('availability_releasecode', array('courseid' => backup::VAR_COURSEID));
+        $code->set_source_table('availability_releasecode', ['courseid' => backup::VAR_COURSEID]);
         $code->annotate_ids('user', 'userid');
     }
 }

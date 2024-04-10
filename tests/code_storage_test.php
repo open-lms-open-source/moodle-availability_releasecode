@@ -15,8 +15,8 @@ class code_storage_test extends \advanced_testcase {
 
     public function test_get_codes() {
         $storage = new code_storage();
-        $this->assertEquals(array(1 => 'ABC', 2 => '123'), $storage->get_codes(2, 3));
-        $this->assertEquals(array(), $storage->get_codes(2, 4));
+        $this->assertEquals([1 => 'ABC', 2 => '123'], $storage->get_codes(2, 3));
+        $this->assertEquals([], $storage->get_codes(2, 4));
     }
 
     public function test_has_code() {
@@ -34,13 +34,13 @@ class code_storage_test extends \advanced_testcase {
 
         $storage = new code_storage();
         $this->assertTrue($storage->set_code(2, 3, '456'), 'Adding new code');
-        $this->assertTrue($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => '456')));
+        $this->assertTrue($DB->record_exists('availability_releasecode', ['courseid' => 2, 'userid' => 3, 'code' => '456']));
 
         $this->assertFalse($storage->set_code(2, 3, 'ABC'), 'Already has this code');
         $this->assertFalse($storage->set_code(2, 3, '123'), 'Already has this code');
 
         $this->assertTrue($storage->set_code(3, 3, '123'), 'Different course');
-        $this->assertTrue($DB->record_exists('availability_releasecode', array('courseid' => 3, 'userid' => 3, 'code' => '123')));
+        $this->assertTrue($DB->record_exists('availability_releasecode', ['courseid' => 3, 'userid' => 3, 'code' => '123']));
     }
 
     public function test_unset_code() {
@@ -50,13 +50,13 @@ class code_storage_test extends \advanced_testcase {
         $this->assertFalse($storage->unset_code(2, 3, '456'), 'Code does not exist');
 
         $this->assertTrue($storage->unset_code(2, 3, 'ABC'), 'Code removed');
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => 'ABC')));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 2, 'userid' => 3, 'code' => 'ABC']));
 
         $this->assertTrue($storage->unset_code(3, 4, 'xYz'), 'Can do a case insensitive code unset');
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 3, 'userid' => 4, 'code' => 'XYZ')));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 3, 'userid' => 4, 'code' => 'XYZ']));
 
         $this->assertTrue($storage->unset_code(2, 3, '123'), 'Code removed');
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => '123')));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 2, 'userid' => 3, 'code' => '123']));
     }
 
     public function test_unset_course_codes() {
@@ -65,7 +65,7 @@ class code_storage_test extends \advanced_testcase {
         $storage = new code_storage();
         $storage->unset_course_codes(2);
 
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2)));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 2]));
     }
 
     public function test_unset_user_codes() {
@@ -74,11 +74,11 @@ class code_storage_test extends \advanced_testcase {
         $storage = new code_storage();
         $storage->unset_user_codes(3);
 
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('userid' => 3)));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['userid' => 3]));
     }
 
     public function test_get_users_with_any_code() {
         $storage = new code_storage();
-        $this->assertEquals(array('3' => '3'), $storage->get_users_with_any_code(2));
+        $this->assertEquals(['3' => '3'], $storage->get_users_with_any_code(2));
     }
 }

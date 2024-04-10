@@ -32,7 +32,7 @@ class code_storage {
      * @return array
      */
     protected function data($courseid, $userid, $code = null) {
-        $data = array('courseid' => $courseid, 'userid' => $userid);
+        $data = ['courseid' => $courseid, 'userid' => $userid];
         if (!is_null($code)) {
             $data['code'] = $code;
         }
@@ -115,7 +115,7 @@ class code_storage {
      * @param int $courseid
      */
     public function unset_course_codes($courseid) {
-        $this->db->delete_records('availability_releasecode', array('courseid' => $courseid));
+        $this->db->delete_records('availability_releasecode', ['courseid' => $courseid]);
     }
 
     /**
@@ -124,7 +124,7 @@ class code_storage {
      * @param int $userid
      */
     public function unset_user_codes($userid) {
-        $this->db->delete_records('availability_releasecode', array('userid' => $userid));
+        $this->db->delete_records('availability_releasecode', ['userid' => $userid]);
     }
 
     /**
@@ -139,6 +139,6 @@ class code_storage {
             SELECT DISTINCT userid id, userid
               FROM {availability_releasecode}
              WHERE courseid = ?
-        ', array($courseid));
+        ', [$courseid]);
     }
 }
