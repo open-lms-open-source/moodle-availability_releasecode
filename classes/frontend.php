@@ -10,7 +10,6 @@ namespace availability_releasecode;
 
 use core_availability\frontend as base_frontend;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Front-end class.

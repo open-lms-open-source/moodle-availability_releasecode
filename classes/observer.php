@@ -11,7 +11,6 @@ namespace availability_releasecode;
 use core\event\course_content_deleted;
 use core\event\user_deleted;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Event observer

@@ -5,6 +5,8 @@ namespace availability_releasecode\tests;
 use availability_releasecode\condition;
 use core_availability\mock_info;
 
+defined('MOODLE_INTERNAL') || die();
+
 require_once(__DIR__.'/../../../tests/fixtures/mock_info.php');
 
 class condition_test extends \advanced_testcase {

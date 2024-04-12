@@ -6,6 +6,8 @@
  * @author Mark Nielsen
  **/
 
+defined('MOODLE_INTERNAL') || die();
+
 $definitions = array(
     // Cache user's course release codes.
     'releasecodes' => array(
