@@ -1,4 +1,18 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace availability_releasecode\tests;
 
@@ -15,8 +29,8 @@ class code_storage_test extends \advanced_testcase {
 
     public function test_get_codes() {
         $storage = new code_storage();
-        $this->assertEquals(array(1 => 'ABC', 2 => '123'), $storage->get_codes(2, 3));
-        $this->assertEquals(array(), $storage->get_codes(2, 4));
+        $this->assertEquals([1 => 'ABC', 2 => '123'], $storage->get_codes(2, 3));
+        $this->assertEquals([], $storage->get_codes(2, 4));
     }
 
     public function test_has_code() {
@@ -34,13 +48,13 @@ class code_storage_test extends \advanced_testcase {
 
         $storage = new code_storage();
         $this->assertTrue($storage->set_code(2, 3, '456'), 'Adding new code');
-        $this->assertTrue($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => '456')));
+        $this->assertTrue($DB->record_exists('availability_releasecode', ['courseid' => 2, 'userid' => 3, 'code' => '456']));
 
         $this->assertFalse($storage->set_code(2, 3, 'ABC'), 'Already has this code');
         $this->assertFalse($storage->set_code(2, 3, '123'), 'Already has this code');
 
         $this->assertTrue($storage->set_code(3, 3, '123'), 'Different course');
-        $this->assertTrue($DB->record_exists('availability_releasecode', array('courseid' => 3, 'userid' => 3, 'code' => '123')));
+        $this->assertTrue($DB->record_exists('availability_releasecode', ['courseid' => 3, 'userid' => 3, 'code' => '123']));
     }
 
     public function test_unset_code() {
@@ -50,13 +64,13 @@ class code_storage_test extends \advanced_testcase {
         $this->assertFalse($storage->unset_code(2, 3, '456'), 'Code does not exist');
 
         $this->assertTrue($storage->unset_code(2, 3, 'ABC'), 'Code removed');
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => 'ABC')));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 2, 'userid' => 3, 'code' => 'ABC']));
 
         $this->assertTrue($storage->unset_code(3, 4, 'xYz'), 'Can do a case insensitive code unset');
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 3, 'userid' => 4, 'code' => 'XYZ')));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 3, 'userid' => 4, 'code' => 'XYZ']));
 
         $this->assertTrue($storage->unset_code(2, 3, '123'), 'Code removed');
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2, 'userid' => 3, 'code' => '123')));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 2, 'userid' => 3, 'code' => '123']));
     }
 
     public function test_unset_course_codes() {
@@ -65,7 +79,7 @@ class code_storage_test extends \advanced_testcase {
         $storage = new code_storage();
         $storage->unset_course_codes(2);
 
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('courseid' => 2)));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['courseid' => 2]));
     }
 
     public function test_unset_user_codes() {
@@ -74,11 +88,11 @@ class code_storage_test extends \advanced_testcase {
         $storage = new code_storage();
         $storage->unset_user_codes(3);
 
-        $this->assertFalse($DB->record_exists('availability_releasecode', array('userid' => 3)));
+        $this->assertFalse($DB->record_exists('availability_releasecode', ['userid' => 3]));
     }
 
     public function test_get_users_with_any_code() {
         $storage = new code_storage();
-        $this->assertEquals(array('3' => '3'), $storage->get_users_with_any_code(2));
+        $this->assertEquals(['3' => '3'], $storage->get_users_with_any_code(2));
     }
 }

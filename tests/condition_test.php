@@ -1,4 +1,18 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace availability_releasecode\tests;
 
@@ -19,8 +33,8 @@ class condition_test extends \advanced_testcase {
     }
 
     public function test_save() {
-        $expected  = (object) array('type' => 'releasecode', 'rc' => '123');
-        $condition = new condition((object) array('rc' => '123'));
+        $expected  = (object) ['type' => 'releasecode', 'rc' => '123'];
+        $condition = new condition((object) ['rc' => '123']);
         $this->assertEquals($expected, $condition->save());
     }
 
@@ -30,7 +44,7 @@ class condition_test extends \advanced_testcase {
         $course->id = 2;
 
         $info = new mock_info($course);
-        $condition = new condition((object) array('rc' => 'ABC'));
+        $condition = new condition((object) ['rc' => 'ABC']);
 
         $this->assertTrue($condition->is_available(false, $info, false, 3));
         $this->assertFalse($condition->is_available(true, $info, false, 3));

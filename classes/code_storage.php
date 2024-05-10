@@ -1,4 +1,18 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 namespace availability_releasecode;
 
@@ -32,7 +46,7 @@ class code_storage {
      * @return array
      */
     protected function data($courseid, $userid, $code = null) {
-        $data = array('courseid' => $courseid, 'userid' => $userid);
+        $data = ['courseid' => $courseid, 'userid' => $userid];
         if (!is_null($code)) {
             $data['code'] = $code;
         }
@@ -115,7 +129,7 @@ class code_storage {
      * @param int $courseid
      */
     public function unset_course_codes($courseid) {
-        $this->db->delete_records('availability_releasecode', array('courseid' => $courseid));
+        $this->db->delete_records('availability_releasecode', ['courseid' => $courseid]);
     }
 
     /**
@@ -124,7 +138,7 @@ class code_storage {
      * @param int $userid
      */
     public function unset_user_codes($userid) {
-        $this->db->delete_records('availability_releasecode', array('userid' => $userid));
+        $this->db->delete_records('availability_releasecode', ['userid' => $userid]);
     }
 
     /**
@@ -139,6 +153,6 @@ class code_storage {
             SELECT DISTINCT userid id, userid
               FROM {availability_releasecode}
              WHERE courseid = ?
-        ', array($courseid));
+        ', [$courseid]);
     }
 }
