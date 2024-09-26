@@ -19,6 +19,8 @@ namespace availability_releasecode\tests;
 use availability_releasecode\code_service;
 use availability_releasecode\code_storage;
 
+defined('MOODLE_INTERNAL') || die();
+
 require_once(__DIR__.'/../../../../cache/classes/dummystore.php');
 
 class code_service_test extends \advanced_testcase {

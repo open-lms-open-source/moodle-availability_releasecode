@@ -25,7 +25,6 @@ namespace availability_releasecode;
 use core_availability\condition as base_condition;
 use core_availability\info;
 
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Release code condition.
