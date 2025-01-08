@@ -19,8 +19,6 @@ namespace availability_releasecode\tests;
 use availability_releasecode\code_service;
 use availability_releasecode\code_storage;
 
-require_once(__DIR__.'/../../../../cache/classes/dummystore.php');
-
 class code_service_test extends \advanced_testcase {
 
     public function setUp(): void {
