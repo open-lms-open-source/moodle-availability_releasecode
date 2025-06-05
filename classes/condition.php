@@ -45,7 +45,7 @@ class condition extends base_condition {
      * Constructor.
      *
      * @param \stdClass $structure Data structure from JSON decode
-     * @throws \coding_exception If invalid data structure.
+     * @throws \core\exception\coding_exception If invalid data structure.
      */
     public function __construct($structure) {
         $this->releasecode = $structure->rc;
