@@ -23,7 +23,7 @@
 $definitions = [
     // Cache user's course release codes.
     'releasecodes' => [
-        'mode'                   => cache_store::MODE_APPLICATION,
+        'mode'                   => \core_cache\store::MODE_APPLICATION,
         'simplekeys'             => true,
         'simpledata'             => true,
         'staticacceleration'     => true,
