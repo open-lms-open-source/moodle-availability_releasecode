@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @copyright  Copyright (c) 2024 Open LMS (https://www.openlms.net)
+ * @copyright  Copyright (c) 2025 Open LMS (https://www.openlms.net)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -25,7 +25,7 @@ $string['pluginname'] = 'Restricción por código de autorización';
 $string['requiresreleasecode'] = 'Obtiene un código de autorización particular.';
 $string['title'] = 'Código de autorización';
 $string['description'] = 'Este elemento del curso no estará disponible para los estudiantes hasta que el estudiante adquiera un código de autorización específico.';
-$string['error_setvalue'] = 'Debe introducir un código de autorización';
+$string['error_setvalue'] = 'Debe introducir un código de autorización.';
 $string['cachedef_releasecodes'] = 'Códigos de autorización de usuario';
 $string['privacy:reason'] = 'La Restricción por código de autorización no almacena datos personales.';
 $string['privacy:metadata:availability_releasecode'] = 'Tabla de códigos de autorización';
