@@ -1,0 +1,10 @@
+{
+    "name": "moodle-availability_releasecode-form",
+    "builds": {
+        "moodle-availability_releasecode-form": {
+            "jsfiles": [
+                "form.js"
+            ]
+        }
+    }
+}
